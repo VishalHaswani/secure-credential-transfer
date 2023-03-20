@@ -4,9 +4,11 @@ import Styletron from 'fusion-plugin-styletron-react';
 
 import Root from './root';
 
-export default () => {
+const Main = () => {
   const app = new App(Root);
   app.register(Styletron);
   app.register(Router);
   return app;
 };
+
+export default Main;

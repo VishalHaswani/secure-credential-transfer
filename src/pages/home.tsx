@@ -1,4 +1,3 @@
-import React from 'react';
 import {styled} from 'fusion-plugin-styletron-react';
 
 const Center = styled('div', {

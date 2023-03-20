@@ -1,20 +1,24 @@
 /* eslint-env node */
 module.exports = {
   extends: [
-    // 'plugin:flowtype/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
     'plugin:jest/recommended',
     './rules/imports.cjs',
     // This comes last so that prettier-config can turn off appropriate rules given the order of precedence by eslint 'extends'
     require.resolve('eslint-config-uber-universal-stage-3'),
   ],
   ignorePatterns: [".fusion/**/*"],
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    requireConfigFile: false
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    tsconfigRootDir: __dirname,
+    project: ['./tsconfig.json']
   },
   plugins: [
-    // 'eslint-plugin-flowtype',
+    '@typescript-eslint',
     'eslint-plugin-react',
     'eslint-plugin-react-hooks',
   ],

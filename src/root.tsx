@@ -1,5 +1,4 @@
-import React from 'react';
-import { Routes, Route } from 'fusion-plugin-react-router';
+import {Routes, Route} from 'fusion-plugin-react-router';
 
 import Home from './pages/home';
 import PageNotFound from './pages/pageNotFound';
