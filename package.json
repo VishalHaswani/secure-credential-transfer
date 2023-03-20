@@ -2,12 +2,45 @@
   "name": "secure-credential-transfer",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "fusion dev",
+    "lint": "eslint .",
+    "test": "fusion test",
+    "build": "fusion build",
+    "build-production": "fusion build --production",
+    "start": "fusion start"
   },
   "keywords": [],
   "author": "",
-  "license": "SEE LICENSE IN LICENSE"
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "baseui": "^12.2.0",
+    "fusion-cli": "^2.39.1",
+    "fusion-core": "^2.11.0",
+    "fusion-plugin-react-helmet-async": "^2.6.6",
+    "fusion-plugin-react-router": "^3.5.8",
+    "fusion-plugin-styletron-react": "^3.6.6",
+    "fusion-plugin-universal-events": "^2.6.8",
+    "fusion-react": "^4.8.7",
+    "fusion-tokens": "^3.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styletron-engine-atomic": "^1.5.0",
+    "styletron-react": "^6.1.0"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.21.3",
+    "eslint": "^8.36.0",
+    "eslint-config-fusion": "^6.3.1",
+    "eslint-config-uber-universal-stage-3": "^3.0.2",
+    "eslint-plugin-baseui": "^12.2.0",
+    "eslint-plugin-cup": "^2.0.4",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.8.5"
+  }
 }
