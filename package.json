@@ -30,11 +30,9 @@
     "styletron-react": "^6.1.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.21.3",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "eslint": "^8.36.0",
-    "eslint-config-fusion": "^6.3.1",
     "eslint-config-uber-universal-stage-3": "^3.0.2",
     "eslint-plugin-baseui": "^12.2.0",
     "eslint-plugin-cup": "^2.0.4",
