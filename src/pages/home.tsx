@@ -1,72 +1,150 @@
-import {styled} from 'fusion-plugin-styletron-react';
+import React, {useState} from 'react';
+import {Block} from 'baseui/block';
+import {Button} from 'baseui/button';
+import {FormControl} from 'baseui/form-control';
+import {Input, MaskedInput} from 'baseui/input';
+import {PaymentCard} from 'baseui/payment-card';
+import {DisplayLarge, DisplayXSmall} from 'baseui/typography';
+import {useStyletron} from 'baseui';
 
-const Center = styled('div', {
-  fontFamily: 'HelveticaNeue-Light, Arial',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '100%',
-});
+const getFormOverrides = (width: string) => {
+  return {
+    ControlContainer: {
+      style: {
+        width,
+      },
+    },
+  };
+};
 
-const FusionStyle = styled('div', {
-  fontSize: '80px',
-  color: 'rgba(0,0,0,.8)',
-  paddingRight: '30px',
-  display: 'flex',
-});
+interface CardDetailsInput {
+  cardNumber: number | '';
+  expDate: string;
+  cvv: number | undefined;
+  pin: number | undefined;
+}
 
-const FullHeightDiv = styled('div', {
-  height: '100%',
-  backgroundColor: '#FFFFFF',
-});
+const Home = () => {
+  const [formData, setFormData] = useState<CardDetailsInput>({
+    cardNumber: '',
+    expDate: '',
+    cvv: undefined,
+    pin: undefined,
+  });
+  const [css] = useStyletron();
 
-const Circle = styled('div', {
-  height: '180px',
-  width: '180px',
-  marginTop: '20px',
-  backgroundColor: 'white',
-  ':hover': {backgroundColor: '#f0f8fa'},
-  border: '10px solid #4db5d9',
-  borderRadius: '50%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
+    const {name, value} = event.target;
+    setFormData({...formData, [name]: value});
+  };
 
-const GettingStartedLink = styled('a', {
-  textDecoration: 'none',
-  color: '#4db5d9',
-  fontSize: '18px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  textAlign: 'center',
-  height: '100%',
-});
+  const handleSubmit = (
+    event: React.SyntheticEvent<HTMLButtonElement, Event>
+  ): void => {
+    event.preventDefault();
+    // submitMutation.mutate(formData)
+  };
 
-const Home = () => (
-  <FullHeightDiv>
-    <style>
-      {`
-        html,body,#root{height:100%;}
-        html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0);}
-        body{margin:0;}
-        button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
-        input::-webkit-inner-spin-button,input::-webkit-outer-spin-button,input::-webkit-search-cancel-button,input::-webkit-search-decoration,input::-webkit-search-results-button,input::-webkit-search-results-decoration{display:none;}
-        `}
-    </style>
-    <Center>
-      <FusionStyle>Fusion.js</FusionStyle>
-
-      <Center>
-        <Circle>
-          <GettingStartedLink href="https://fusionjs.com/docs/overview">
-            Let&apos;s Get Started
-          </GettingStartedLink>
-        </Circle>
-      </Center>
-    </Center>
-  </FullHeightDiv>
-);
+  return (
+    <>
+      <center>
+        <DisplayLarge marginBottom="scale500">NET BANKING</DisplayLarge>
+        <DisplayXSmall>A secure Portal for online transcations</DisplayXSmall>
+      </center>
+      <Block
+        className={css({
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          width: '60%',
+          margin: 'auto',
+        })}
+      >
+        <Block
+          className={css({
+            display: 'flex',
+            flexDirection: 'column',
+            width: '350px',
+            margin: 'auto',
+          })}
+        >
+          <FormControl
+            label="Card Number"
+            overrides={getFormOverrides('250px')}
+          >
+            <PaymentCard
+              value={formData.cardNumber}
+              onChange={handleChange}
+              placeholder="0000 0000 0000 0000"
+            />
+          </FormControl>
+          <FormControl
+            label="Expiry Date"
+            overrides={getFormOverrides('100px')}
+          >
+            <MaskedInput
+              value={formData.expDate}
+              onChange={handleChange}
+              placeholder="MM/YY"
+              mask="99/99"
+            />
+          </FormControl>
+          <FormControl label="CVV" overrides={getFormOverrides('100px')}>
+            <MaskedInput
+              value={formData.cvv}
+              onChange={handleChange}
+              placeholder="000"
+              mask="999"
+            />
+          </FormControl>
+          <FormControl label="PIN" overrides={getFormOverrides('200px')}>
+            <Input
+              value={formData.cvv}
+              onChange={handleChange}
+              placeholder="XXXX"
+              type="password"
+            />
+          </FormControl>
+          <Button
+            onClick={handleSubmit}
+            // isLoading={submitMutation.isLoading}
+          >
+            Submit
+          </Button>
+        </Block>
+        <Block
+          className={css({
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
+            alignContent: 'center',
+            width: '200px',
+            height: '300px',
+          })}
+        >
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => {
+            return (
+              <Button
+                key={num}
+                overrides={{
+                  Root: {
+                    style: {
+                      margin: '10px',
+                    },
+                  },
+                }}
+              >
+                {num}
+              </Button>
+            );
+          })}
+        </Block>
+      </Block>
+    </>
+  );
+};
 
 export default Home;
