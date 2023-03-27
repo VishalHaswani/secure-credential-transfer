@@ -6,10 +6,13 @@ export default createPlugin<any, any>({
     encryption: RequestBodyEncryptionToken,
   },
   middleware(): any {
-    console.log('This is a middleware');
     return (ctx: Context, next: () => Promise<void>) => {
       const apiPathRegexp = new RegExp('^/apiv1/.*');
       if (apiPathRegexp.test(ctx.path)) {
+        console.log(
+          'apiPlugin: This is a middleware, Body: ' + JSON.stringify(ctx.body)
+        );
+        ctx.status = 200;
         ctx.body = {greeting: 'hello'};
       }
       return next();

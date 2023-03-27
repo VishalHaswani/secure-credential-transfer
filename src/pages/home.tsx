@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
+import {useStyletron} from 'baseui';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
 import {FormControl} from 'baseui/form-control';
 import {Input, MaskedInput} from 'baseui/input';
 import {PaymentCard} from 'baseui/payment-card';
 import {DisplayLarge, DisplayXSmall} from 'baseui/typography';
-import {useStyletron} from 'baseui';
+import {useMutation} from '@tanstack/react-query';
 
 const getFormOverrides = (width: string) => {
   return {
@@ -15,6 +16,28 @@ const getFormOverrides = (width: string) => {
       },
     },
   };
+};
+
+const postCreditCardData = async (
+  formData: CardDetailsInput
+): Promise<boolean> => {
+  const URL = 'http://localhost:3000/apiv1/pay';
+  const data = {
+    cardNumber: '1234567887654321',
+    expDate: '09/25',
+    cvv: '123',
+    pin: '123456',
+  };
+  const request = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
+  const response = await fetch(URL, request);
+  const responseBody = await response.json();
+  return responseBody?.isSuccesful as boolean;
 };
 
 interface CardDetailsInput {
@@ -40,11 +63,20 @@ const Home = () => {
     setFormData({...formData, [name]: value});
   };
 
+  const submitMutation = useMutation({
+    mutationFn: postCreditCardData,
+    onSuccess: (response) => {
+      console.log(response);
+    },
+  });
+
   const handleSubmit = (
     event: React.SyntheticEvent<HTMLButtonElement, Event>
   ): void => {
     event.preventDefault();
-    // submitMutation.mutate(formData)
+    // const plaintextData = JSON.stringify(formData);
+    // const encryptedData = encrypt(formData);
+    submitMutation.mutate(formData);
   };
 
   return (
@@ -108,10 +140,7 @@ const Home = () => {
               type="password"
             />
           </FormControl>
-          <Button
-            onClick={handleSubmit}
-            // isLoading={submitMutation.isLoading}
-          >
+          <Button onClick={handleSubmit} isLoading={submitMutation.isLoading}>
             Submit
           </Button>
         </Block>
@@ -132,7 +161,10 @@ const Home = () => {
                 overrides={{
                   Root: {
                     style: {
-                      margin: '10px',
+                      marginTop: '10px',
+                      marginRight: '10px',
+                      marginBottom: '10px',
+                      marginLeft: '10px',
                     },
                   },
                 }}

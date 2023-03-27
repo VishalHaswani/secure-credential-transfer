@@ -1426,6 +1426,19 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@tanstack/query-core@4.27.0":
+  version "4.27.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.27.0.tgz#96bcef499008ea080b66611d029655e3ffdf8bea"
+  integrity sha512-sm+QncWaPmM73IPwFlmWSKPqjdTXZeFf/7aEmWh00z7yl2FjqophPt0dE1EHW9P1giMC5rMviv7OUbSDmWzXXA==
+
+"@tanstack/react-query@^4.28.0":
+  version "4.28.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.28.0.tgz#01cb9969b15cbcbd5dcfcd4b264dc18ef0a35f86"
+  integrity sha512-8cGBV5300RHlvYdS4ea+G1JcZIt5CIuprXYFnsWggkmGoC0b5JaqG0fIX3qwDL9PTNkKvG76NGThIWbpXivMrQ==
+  dependencies:
+    "@tanstack/query-core" "4.27.0"
+    use-sync-external-store "^1.2.0"
+
 "@trysound/sax@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
@@ -1507,6 +1520,11 @@
     "@types/express" "*"
     "@types/keygrip" "*"
     "@types/node" "*"
+
+"@types/crypto-js@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@types/crypto-js/-/crypto-js-4.1.1.tgz#602859584cecc91894eb23a4892f38cfa927890d"
+  integrity sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==
 
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
@@ -1603,6 +1621,13 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@types/keygrip/-/keygrip-1.0.2.tgz#513abfd256d7ad0bf1ee1873606317b33b1b2a72"
   integrity sha512-GJhpTepz2udxGexqos8wgaBx4I/zWIDPh/KOGEwAqtuGDkOUJu5eFvwmdBX4AmB8Odsr+9pHCQqiAqDL/yKMKw==
+
+"@types/koa-bodyparser@^4.3.10":
+  version "4.3.10"
+  resolved "https://registry.yarnpkg.com/@types/koa-bodyparser/-/koa-bodyparser-4.3.10.tgz#02b8d3d57579aa7d491d553f1f4058088bfe127f"
+  integrity sha512-6ae05pjhmrmGhUR8GYD5qr5p9LTEMEGfGXCsK8VaSL+totwigm8+H/7MHW7K4854CMeuwRAubT8qcc/EagaeIA==
+  dependencies:
+    "@types/koa" "*"
 
 "@types/koa-compose@*":
   version "3.2.5"
@@ -2980,6 +3005,11 @@ crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
+
+crypto-js@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
+  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
 
 css-in-js-utils@^2.0.0:
   version "2.0.1"
@@ -4470,6 +4500,14 @@ fusion-plugin-universal-events@^2.6.8:
   dependencies:
     koa-bodyparser "4.2.1"
 
+fusion-plugin-universal-logger@^2.3.7:
+  version "2.3.7"
+  resolved "https://registry.yarnpkg.com/fusion-plugin-universal-logger/-/fusion-plugin-universal-logger-2.3.7.tgz#3df74e8402aabd85563d916a4bbcfbed729da954"
+  integrity sha512-nP4gNXtvFaIKdy2txWU4D8DNFM5E+anvH5DEFbqz4aT5j776fb7YfSt0M89rGGRt5txvjDdM6qT0pAlecBI+pA==
+  dependencies:
+    winston "^3.2.1"
+    winston-transport "^4.2.0"
+
 fusion-react@^4.8.7:
   version "4.8.7"
   resolved "https://registry.yarnpkg.com/fusion-react/-/fusion-react-4.8.7.tgz#fb06170dfd0e70e323e708cbbf1021a8734a4f34"
@@ -5762,6 +5800,14 @@ koa-bodyparser@4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/koa-bodyparser/-/koa-bodyparser-4.2.1.tgz#4d7dacb5e6db1106649b595d9e5ccb158b6f3b29"
   integrity sha512-UIjPAlMZfNYDDe+4zBaOAUKYqkwAGcIU6r2ARf1UOXPAlfennQys5IiShaVeNf7KkVBlf88f2LeLvBFvKylttw==
+  dependencies:
+    co-body "^6.0.0"
+    copy-to "^2.0.1"
+
+koa-bodyparser@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/koa-bodyparser/-/koa-bodyparser-4.4.0.tgz#2271cd7d603a08c47a47e82d2c00630379672e6c"
+  integrity sha512-AXPY7wwKZUmbgb8VkTEUFoRNOlx6aWRJwEnQD+zfNf33/7KSAkN4Oo9BqlIk80D+5TvuqlhpQT5dPVcyxl5Zsw==
   dependencies:
     co-body "^6.0.0"
     copy-to "^2.0.1"
@@ -7904,6 +7950,11 @@ use-sidecar@^1.1.2:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
 
+use-sync-external-store@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
+  integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
+
 util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -8075,7 +8126,7 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
-winston-transport@^4.5.0:
+winston-transport@^4.2.0, winston-transport@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/winston-transport/-/winston-transport-4.5.0.tgz#6e7b0dd04d393171ed5e4e4905db265f7ab384fa"
   integrity sha512-YpZzcUzBedhlTAfJg6vJDlyEai/IFMIVcaEZZyl3UXIl4gmqRpU7AE89AHLkbzLUsv0NVmw7ts+iztqKxxPW1Q==
@@ -8084,7 +8135,7 @@ winston-transport@^4.5.0:
     readable-stream "^3.6.0"
     triple-beam "^1.3.0"
 
-winston@^3.3.3:
+winston@^3.2.1, winston@^3.3.3:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/winston/-/winston-3.8.2.tgz#56e16b34022eb4cff2638196d9646d7430fdad50"
   integrity sha512-MsE1gRx1m5jdTTO9Ld/vND4krP2To+lgDoMEHGGa4HIlAUyXJtfc7CxQcGXVyz2IBpw5hbFkj2b/AtUdQwyRew==
