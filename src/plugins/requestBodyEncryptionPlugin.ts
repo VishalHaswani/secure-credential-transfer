@@ -2,6 +2,8 @@ import {createPlugin, createToken, type Context} from 'fusion-core';
 import {LoggerToken} from 'fusion-tokens';
 
 import {EncryptedRequestBody} from '../../types';
+import {bankPrivateKey, clientPublicKey} from '../constants';
+import {decrypt} from '../util/EncryptionAndDecryption';
 
 export const RequestBodyEncryptionToken = createToken('EncryptionToken');
 
@@ -10,8 +12,6 @@ type Deps = {
 };
 type Service = {
   isEncryptedRequestBody: (body: any) => body is EncryptedRequestBody;
-  encrypt: (body: any) => EncryptedRequestBody;
-  decrypt: (body: EncryptedRequestBody) => any;
 };
 
 export default createPlugin<Deps, Service>({
@@ -25,29 +25,24 @@ export default createPlugin<Deps, Service>({
       return typeof body?.data === 'string';
     };
 
-    const encrypt = (body: any): EncryptedRequestBody => {
-      const encryptedData = '';
-      return {data: encryptedData};
-    };
-
-    const decrypt = (body: EncryptedRequestBody): any => {
-      return {};
-    };
-
-    return {isEncryptedRequestBody, encrypt, decrypt};
+    return {isEncryptedRequestBody};
   },
-  middleware({logger}, {isEncryptedRequestBody, encrypt, decrypt}): any {
+  middleware({logger}, {isEncryptedRequestBody}): any {
     return (ctx: Context, next: () => Promise<void>) => {
       const apiPathRegexp = new RegExp('^/apiv1/.*');
       if (!apiPathRegexp.test(ctx.path)) return next();
 
-      logger.info('requestBodyEnc: Node Part: This is a middleware');
-      if (!isEncryptedRequestBody(ctx.body)) {
+      // logger.info('requestBodyEnc: Node Part: This is a middleware');
+      if (!isEncryptedRequestBody(ctx.request.body)) {
         ctx.status = 404;
         ctx.body = 'Invalid Request';
       } else {
-        logger.info(ctx.request.body);
-        ctx.body = decrypt(ctx.body);
+        // logger.info(ctx.request.body);
+        ctx.request.body = decrypt(
+          ctx.request.body.data,
+          bankPrivateKey,
+          clientPublicKey
+        );
       }
       return next();
     };

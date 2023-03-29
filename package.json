@@ -30,6 +30,7 @@
     "fusion-react": "^4.8.7",
     "fusion-tokens": "^3.0.2",
     "koa-bodyparser": "^4.4.0",
+    "nodejs-jsencrypt": "^3.0.0-rc.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styletron-engine-atomic": "^1.5.0",

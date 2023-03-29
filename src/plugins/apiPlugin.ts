@@ -10,7 +10,8 @@ export default createPlugin<any, any>({
       const apiPathRegexp = new RegExp('^/apiv1/.*');
       if (apiPathRegexp.test(ctx.path)) {
         console.log(
-          'apiPlugin: This is a middleware, Body: ' + JSON.stringify(ctx.body)
+          'apiPlugin: This is a middleware, Body: ' +
+            JSON.stringify(ctx.request.body)
         );
         ctx.status = 200;
         ctx.body = {greeting: 'hello'};

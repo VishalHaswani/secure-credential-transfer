@@ -8,6 +8,10 @@ import {PaymentCard} from 'baseui/payment-card';
 import {DisplayLarge, DisplayXSmall} from 'baseui/typography';
 import {useMutation} from '@tanstack/react-query';
 
+import {encrypt} from '../util/EncryptionAndDecryption';
+import {EncryptedRequestBody} from '../../types';
+import {bankPublicKey, clientPrivateKey, TDESPassphrase} from '../constants';
+
 const getFormOverrides = (width: string) => {
   return {
     ControlContainer: {
@@ -19,21 +23,15 @@ const getFormOverrides = (width: string) => {
 };
 
 const postCreditCardData = async (
-  formData: CardDetailsInput
+  encryptedRequestBody: EncryptedRequestBody
 ): Promise<boolean> => {
   const URL = 'http://localhost:3000/apiv1/pay';
-  const data = {
-    cardNumber: '1234567887654321',
-    expDate: '09/25',
-    cvv: '123',
-    pin: '123456',
-  };
   const request = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(encryptedRequestBody),
   };
   const response = await fetch(URL, request);
   const responseBody = await response.json();
@@ -74,9 +72,20 @@ const Home = () => {
     event: React.SyntheticEvent<HTMLButtonElement, Event>
   ): void => {
     event.preventDefault();
-    // const plaintextData = JSON.stringify(formData);
-    // const encryptedData = encrypt(formData);
-    submitMutation.mutate(formData);
+    const sampleData = {
+      cardNumber: '1234567887654321',
+      expDate: '09/25',
+      cvv: '123',
+      pin: '123456',
+    };
+    const plaintextData = JSON.stringify(sampleData);
+    const encryptedData = encrypt(
+      plaintextData,
+      TDESPassphrase,
+      clientPrivateKey,
+      bankPublicKey
+    );
+    submitMutation.mutate(encryptedData);
   };
 
   return (
