@@ -13,8 +13,13 @@ export default createPlugin<any, any>({
           'apiPlugin: This is a middleware, Body: ' +
             JSON.stringify(ctx.request.body)
         );
+        // if () {
         ctx.status = 200;
-        ctx.body = {greeting: 'hello'};
+        ctx.body = {congrats: 'Credientals are verified'};
+        // } else {
+        //   ctx.status = 400;
+        //   ctx.body = {message: 'Invalid '};
+        // }
       }
       return next();
     };

@@ -72,13 +72,15 @@ const Home = () => {
     event: React.SyntheticEvent<HTMLButtonElement, Event>
   ): void => {
     event.preventDefault();
-    const sampleData = {
-      cardNumber: '1234567887654321',
-      expDate: '09/25',
-      cvv: '123',
-      pin: '123456',
-    };
-    const plaintextData = JSON.stringify(sampleData);
+    // const sampleData = {
+    //   cardNumber: '1234567887654321',
+    //   expDate: '09/25',
+    //   cvv: '123',
+    //   pin: '123456',
+    // };
+    // eslint-disable-next-line prefer-const
+    // let plaintextData = JSON.stringify(sampleData);
+    const plaintextData = JSON.stringify(formData);
     const encryptedData = encrypt(
       plaintextData,
       TDESPassphrase,
@@ -117,6 +119,7 @@ const Home = () => {
             overrides={getFormOverrides('250px')}
           >
             <PaymentCard
+              name="cardNumber"
               value={formData.cardNumber}
               onChange={handleChange}
               placeholder="0000 0000 0000 0000"
@@ -127,6 +130,7 @@ const Home = () => {
             overrides={getFormOverrides('100px')}
           >
             <MaskedInput
+              name="expDate"
               value={formData.expDate}
               onChange={handleChange}
               placeholder="MM/YY"
@@ -135,6 +139,7 @@ const Home = () => {
           </FormControl>
           <FormControl label="CVV" overrides={getFormOverrides('100px')}>
             <MaskedInput
+              name="cvv"
               value={formData.cvv}
               onChange={handleChange}
               placeholder="000"
@@ -143,7 +148,8 @@ const Home = () => {
           </FormControl>
           <FormControl label="PIN" overrides={getFormOverrides('200px')}>
             <Input
-              value={formData.cvv}
+              name="pin"
+              value={formData.pin}
               onChange={handleChange}
               placeholder="XXXX"
               type="password"
@@ -153,7 +159,7 @@ const Home = () => {
             Submit
           </Button>
         </Block>
-        <Block
+        {/* <Block
           className={css({
             display: 'flex',
             flexWrap: 'wrap',
@@ -182,7 +188,7 @@ const Home = () => {
               </Button>
             );
           })}
-        </Block>
+        </Block> */}
       </Block>
     </>
   );
